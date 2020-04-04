@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# advanced pwd
+
+working_derectory=$(pwd)
+
+if [ x"$1" == x"-w" ]; then
+    if [ "$#" -gt 2 ]; then
+        echo "apwd: too many arguments"
+        echo "Try 'apwd -h' for more information."
+        exit 1
+    fi
+    if [ x"$2" == x"" ]; then
+        echo "apwd: option requires an argument -- 'w'"
+        echo "Try 'apwd -h' for more information."
+        exit 1
+    else
+        echo "$working_derectory"/"$2"
+    fi
+elif [ x"$1" == x"-b" ]; then
+    basename "$working_derectory"
+elif [ x"$1" == x"-h" ]; then
+    echo "Usage:"
+    echo "  apwd [OPTION] [ARGUMENT]"
+    echo "Commands:"
+    echo "  -h        Show this help and exit"
+    echo "  -w        Print the working directory with a given string separated by '/'"
+    echo "  -b        Print the basename of the working directory (via 'basename' command)"
+else
+    echo "$working_derectory"
+fi
